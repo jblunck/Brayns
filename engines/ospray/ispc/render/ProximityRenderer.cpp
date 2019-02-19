@@ -36,8 +36,8 @@ void ProximityRenderer::commit()
     _detectionDistance = getParam1f("detectionDistance", 1.f);
     _detectionOnDifferentMaterial =
         bool(getParam1i("detectionOnDifferentMaterial", 0));
-    _electronShadingEnabled = getParam("electronShadingEnabled", false);
-    _surfaceShadingEnabled = getParam("surfaceShadingEnabled", false);
+    _electronShadingEnabled = getParam("electronShadingEnabled", 0);
+    _surfaceShadingEnabled = getParam("surfaceShadingEnabled", 0);
     _randomNumber = getParam1i("randomNumber", 0);
     _alphaCorrection = getParam1f("alphaCorrection", 0.5f);
 
