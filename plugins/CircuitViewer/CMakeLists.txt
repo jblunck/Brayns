@@ -12,8 +12,6 @@ include(Common)
 
 common_find_package(Brion REQUIRED)
 common_find_package(ospray 1.8 SYSTEM)
-# For unit tests
-common_find_package(BBPTestData)
 common_find_package_post()
 
 set(BRAYNSCIRCUITVIEWER_HEADERS
@@ -77,8 +75,6 @@ set(BRAYNSCIRCUITVIEWER_OMIT_LIBRARY_HEADER ON)
 set(BRAYNSCIRCUITVIEWER_OMIT_VERSION_HEADERS ON)
 set(BRAYNSCIRCUITVIEWER_OMIT_EXPORT ON)
 common_library(braynsCircuitViewer)
-
-add_subdirectory(tests)
 
 if (TARGET Brayns-all)
   add_dependencies(Brayns-all BraynsCircuitViewer-all)

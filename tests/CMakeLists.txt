@@ -52,12 +52,6 @@ if(NOT BRAYNS_ASSIMP_ENABLED)
   )
 endif()
 
-if(TARGET braynsCircuitViewer)
-  list(APPEND TEST_LIBRARIES braynsCircuitViewer)
-else()
-  list(APPEND EXCLUDE_FROM_TESTS shadows.cpp)
-endif()
-
 if(BRAYNS_NETWORKING_ENABLED AND BRAYNS_OSPRAY_ENABLED)
   list(APPEND CMAKE_MODULE_PATH ${OSPRAY_CMAKE_ROOT})
   include(osprayUse)
@@ -97,6 +91,30 @@ endif()
 
 if(NOT BRAYNS_OPTIX_ENABLED OR NOT BRAYNS_OPTIX_TESTS_ENABLED)
     list(APPEND EXCLUDE_FROM_TESTS demoOptiX.cpp)
+endif()
+
+common_find_package(BBPTestData)
+
+if(TARGET braynsCircuitViewer AND TARGET BBPTestData AND BRAYNS_OSPRAY_ENABLED AND BRAYNS_ASSIMP_ENABLED)
+    list(APPEND TEST_LIBRARIES BBPTestData Brain)
+else()
+   list(APPEND EXCLUDE_FROM_TESTS
+       circuitViewerAddCircuit.cpp
+       circuitViewerBraynsTestData.cpp
+       circuitViewerOptixCircuit.cpp
+       circuitViewerUtils.cpp)
+endif()
+
+if(NOT TARGET braynsCircuitViewer)
+    list(APPEND EXCLUDE_FROM_TESTS shadows.cpp)
+endif()
+
+if(NOT BRAYNS_NETWORKING_ENABLED)
+    list(APPEND EXCLUDE_FROM_TESTS circuitViewerAddCircuit.cpp)
+endif()
+
+if(NOT BRAYNS_OPTIX_ENABLED OR NOT BRAYNS_OPTIX_TESTS_ENABLED)
+    list(APPEND EXCLUDE_FROM_TESTS circuitViewerOptixCircuit.cpp)
 endif()
 
 include_directories(

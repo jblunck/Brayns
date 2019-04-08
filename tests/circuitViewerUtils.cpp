@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "../io/utils.h"
+#include "plugins/CircuitViewer/io/utils.h"
 
 #define BOOST_TEST_MODULE circuitViewerUtils
 #include <boost/test/unit_test.hpp>
@@ -51,5 +51,3 @@ BOOST_AUTO_TEST_CASE(invalid)
     BOOST_CHECK(keyToGIDorRange("1-2a").empty());
     BOOST_CHECK(keyToGIDorRange("1 1-2").empty());
 }
-
-
